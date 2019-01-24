@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  web:
+    build:
+      # specifies where files come from, "." meaning current directory
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # tells docker not to look outside the container for the node_modules,
+      # only the other files in the working directory
+      - /app/node_modules
+      - .:/app
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    # override start command
+    command: ["npm", "run", "test"]
