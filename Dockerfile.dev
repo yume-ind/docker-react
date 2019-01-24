@@ -1,3 +1,6 @@
+# used for development (obviously)
+# use this dockerfile for testing
+
 FROM node:alpine
 
 WORKDIR '/app'
